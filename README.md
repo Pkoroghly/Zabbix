@@ -406,7 +406,7 @@ To make Zabbix work properly, do the following steps in order:
 5.  Set up a service.
   
 ## Authors and acknowledgment  
-I sincerely thank the Packops group and Mr Farhad Nickfetrat for authoring this highly informative article.
+I sincerely thank the Packops group and Mr Farshad Nickfetrat for authoring this highly informative article.
   
 ## License  
 MIT License
