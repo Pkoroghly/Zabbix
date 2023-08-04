@@ -1,4 +1,4 @@
-![ alt text ](https://img.shields.io/badge/Linkedln-PashaKouroghli-0A66C2?style=&logo=Linkedln)
+![ alt text ](https://img.shields.io/badge/Linkedln-PashaKoroghli-0A66C2?style=&logo=Linkedln)
 ![ alt text ](https://img.shields.io/badge/copyright-MIT-67C52A?style=&logo=)
 ![ alt text ](https://img.shields.io/badge/Zabbix-6.4.5-DA1F26?style=&logo=)
 ![ alt text ](https://img.shields.io/badge/Ubuntu-22.04.2-E95420?style=&logo=ubuntu)
