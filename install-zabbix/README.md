@@ -1,5 +1,7 @@
-
-
+![ alt text ](https://img.shields.io/badge/Linkedln-PashaKouroghli-0A66C2?style=&logo=Linkedln)
+![ alt text ](https://img.shields.io/badge/copyright-MIT-67C52A?style=&logo=)
+![ alt text ](https://img.shields.io/badge/Zabbix-6.4.5-DA1F26?style=&logo=)
+![ alt text ](https://img.shields.io/badge/Ubuntu-22.04.2-E95420?style=&logo=ubuntu)
 
 **Name**  
 The installation process of Zabbix  
@@ -402,11 +404,31 @@ To make Zabbix work properly, do the following steps in order:
 4.  Connect the database to Zabbix.
 5.  Set up a service.
   
-Authors and acknowledgment  
+## Authors and acknowledgment  
 I sincerely thank the Packops group and Mr Farhad Nickfetrat for authoring this highly informative article.
   
-License  
-For open source projects, say how it is licensed.  
+## License  
+MIT License
+
+Copyright (c) 2023 Pasha koroghli
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
   
 
 
