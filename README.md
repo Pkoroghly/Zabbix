@@ -14,7 +14,7 @@ The installation process of Zabbix
 
 ## **Description**
 
-#Zabbix is a tool used for monitoring IT infrastructure like networks, servers, virtual machines, and cloud services. It is open-source software that collects and displays basic metrics. For more definitions, check out @zabbix or Wikipedia. Zabbix can be installed through multiple methods, but this tutorial will focus on the installation method using Zabbix agents.
+#Zabbix is a tool used for monitoring IT infrastructure like networks, servers, virtual machines, and cloud services. It is open-source software that collects and displays basic metrics. For more definitions, check out @zabbix or Wikipedia. Zabbix can be installed through multiple methods, but this tutorial will focus on the installation method using Zabbix.
 
   
 **Installation**  
