@@ -1,5 +1,6 @@
-# Keepalived Config MASTER server (Priority 101)
+Keepalived Config MASTER server (Priority 101)
 vim /etc/keepalived/keepalived.conf
+
 vrrp_script chk_http_port {
     script "/opt/healthcheck.sh"
     interval 5   # Check every 5 seconds
