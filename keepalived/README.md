@@ -13,13 +13,51 @@ To set up high availability for a service, Nginx is installed on two servers: on
 
 Zabbix sender is a monitoring system that checks the health of both servers. It sends alerts to administrators if there are any issues, allowing them to quickly identify and resolve any problems. This proactive monitoring ensures that any potential issues are detected and resolved before they affect the availability of the blog.
 
-The combination of Nginx, Keepalived, and Zabbix sender provides a reliable and scalable service hosting solution. This setup can handle large numbers of visitors by ensuring high availability and monitoring server health while maintaining optimal performance.
+Overall, the combination of Nginx, Keepalived, and Zabbix sender provides a reliable and scalable service hosting solution. This setup can handle large numbers of visitors by ensuring high availability and monitoring server health while maintaining optimal performance.
 
 ## Getting start
 
+To run this scenario, we divide it into phase one configuration on the Linux server-side and Phase two set-up of needed components on the Zabbix side. 
+
 ## Dependencies
 
-Three Ubuntu Linux 22.04.3 services, such as a virtual box, were installed in a virtual environment. These servers now require updates, and Zabbix 6.4 must be installed on one of them.
+Three Ubuntu Linux 22.04.3 services were installed in a virtual environment, such as a virtual box. These servers now require updates, and Zabbix 6.4 must be installed on one of them.
+
+### Phase one
+
+ 1. After updating both servers, it is necessary to configure Keepalived
+    in the Master and Backup servers. The configuration can be found in
+    the installation section at the bottom.
+    
+ 2. It is important to create a healthcheck script for both servers. Insert, Additionally, you can utilize the healthcheck script available in the installation section.
+
+> The Keepalived needs to access the healthcare script. This line can
+> help give access o keepalived access, but it is not routine.
+
+    chm 777 -R /opt/healthcheck.sh 
+
+> In a standard or logical manner, you should sh owen keepalive.
+
+ 3. Finally, install Nginx on both servers.
+ 4. To check if Nginx is available on a browser, try accessing both range IP addresses on Port 80.
+ 5. Now to start or restart keepalived service on both servers.
+ 6. After restarting, check keepalived status. `serive keeplived status`
+ 7. As mentioned earlier, Zabbix needs to be installed on the third server. You can find instructions on the official Zabbix website https://www.zabbix.com/download. Different paths are available for installation, including Docker, Zabbix, or Zabbix source. It does not matter which one you choose. In addition, you can check [README.md](https://github.com/pasha-k87/Zabbix/commit/55574f710a843c06ccd2fffefa47f1221ea77521) on my GitHub repository. I've provided Instructions to install the Zabbix source.
+ 8. Install Zabbix sender LTS from the official repository. Additionally, you may install a Zabbix agent, but for this use case, the Zabbix sender is sufficient.  `wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu22.04_all.deb` | `apt install zabbix-sender`
+
+ 
+### Phase two
+ 9. Now on Zabbix have to create an item for keepalived.
+>  Data collection>Host>items>Creat item
+10. Set: name (optional character), Type (Zabbix trapper) , Key(optional character), Type of information (Numeric (unsigned)), Update interval (optional character),
+11. Set Zabbix sender on servers: `zabbix_sender -z 192.168.31.70 zabbix-server -s "zbx" -k mck-o 1000` 
+> Set IP servers to the previous config with MASTER at 192.168.31.70
+> using the key (Zabbix component) name 'mck'.
+12. It's time to add the result to the health check script and send it to the monitoring service.
+13. check the response: `cat /var/log/syslog`
+14.  `Nano /opt/healthcheck.sh`
+15. in the healthcheck.sh after ok condition copy `zabbix_sender -z 192.168.31.70 zabbix-server -s "zbx" -k mck -o 0` | and after not oK `zabbix_sender -z 192.168.31.70 zabbix-server -s "zbx" -k mck -o 1`.
+16. create another key for Backup Server same as MASTER Server on Zabbix. You can take a clone just than just change the name.
 
 # Installing
 
@@ -89,6 +127,9 @@ vrrp_instance VI_1 {
 ```
 ## healtcheck.sh
 
+> Path 
+> /opt/healthcheck.sh
+
     #!/bin/bash
         
         # Define the URL to check
@@ -107,48 +148,23 @@ vrrp_instance VI_1 {
             logger "DOWN"
             exit 1
         fi
+        
 
 ## Executing program
+Now you can check your monitoring pipeline, by logging Zabbix Monitoring>Latest data> search your Name Item. You can test it just stop Nginx service on MASTER server.
 
-* How to run the program
+``
 
-* Step-by-step bullets
-
-```
-
-code blocks for commands
-
-```
-
-##  Help
-
-Any advise for common problems or issues.
-
-```
-
-command to run if program contains helper info
-
-```
 
 ## **Authors**
 
-Contributors names and contact info
-
-ex. Dominique Pizzie
-
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Pasha Koroghly
+Email: p.koroghly@gmail.com
+linkedin: https://www.linkedin.com/in/pasha-koroghli
 
 ## **Version History**
 
-* 0.2
-
-* Various bug fixes and optimizations
-
-* See [commit change]() or See [release history]()
-
-* 0.1
-
-* Initial Release
+* Initial Release:	6.4- Zabbix-100-Sci.E-2.1.5-Keepalived-2023.11.08
 
 ## License
 
@@ -194,3 +210,11 @@ A [virtual IP address](https://en.wikipedia.org/wiki/Virtual_IP_address) is an I
 
 ### Barman 
 [Barman](https://docs.pgbarman.org/release/3.7.0/) is a tool used for PostgreSQL server disaster recovery management. It is open-source and written in Python. This tool helps organizations to remotely back up multiple servers in business-critical environments to reduce risk and aid DBAs during recovery.
+
+## References
+
+ - https://packops.ir/
+ - https://www.zabbix.com/documentation/current/en/manual/definitions
+ - https://ubuntu.com/server/docs
+ - http://nginx.org/en/docs/
+ - https://www.keepalived.org/
