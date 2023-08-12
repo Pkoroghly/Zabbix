@@ -4,6 +4,7 @@
 ## Overview
 
 Nginx and Keepalived collaborate to keep a web server running and handle high traffic. One server is primary, and the other is a backup in case of failure. Zabbix sender monitors the servers and alerts admins of issues, ensuring the blog runs smoothly.
+![6 4_ Zabbix_100_Sci E_2 1 5_Keepalived_2023 11 08 drawio](https://github.com/pasha-k87/Zabbix/assets/79890366/7ec72e06-8b7b-487e-b246-73ed6e77a06f)
 
 # Description
 
