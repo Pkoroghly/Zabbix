@@ -27,14 +27,16 @@ The installation process of Zabbix
 apt update
 
     wget https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu22.04_all.deb
+.
     dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb
+.
     apt update
     
 
 > For the second step, we'll require some tools.
 
     apt install gcc libssh2-1-dev golang make odbc-mariadb unixodbc unixodbc-dev odbcinst mariadb-server zabbix-agent2 libxml2-dev pkg-config libsnmp-dev snmp  libopenipmi-dev libevent-dev  libcurl4-openssl-dev libpcre3-dev build-essential libmariadb-dev sudo libxml2-dev snmp libsnmp-dev libcurl4-openssl-dev php-gd php-xml php-bcmath php-mbstring vim libevent-dev libpcre3-dev libxml2-dev libmariadb-dev libopenipmi-dev pkg-config php-ldap -y
-
+.
       Determine your directory.
     cd /opt
     
@@ -48,8 +50,9 @@ apt update
 > in the current directory..
 
     wget https://cdn.zabbix.com/zabbix/sources/stable/6.4/zabbix-6.4.5.tar.gz
+.
      tar -zxvf zabbix-6.4.5.tar.gz
-
+cd zabbix-6.4.5
 > We require a user specifically for Zabbix.
 
 ***Please note:* 
