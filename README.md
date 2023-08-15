@@ -27,17 +27,17 @@ The installation process of Zabbix
 apt update
 
     wget https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu22.04_all.deb
-.
+
     dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb
-.
+
     apt update
     
 
 > For the second step, we'll require some tools.
 
     apt install gcc libssh2-1-dev golang make odbc-mariadb unixodbc unixodbc-dev odbcinst mariadb-server zabbix-agent2 libxml2-dev pkg-config libsnmp-dev snmp  libopenipmi-dev libevent-dev  libcurl4-openssl-dev libpcre3-dev build-essential libmariadb-dev sudo libxml2-dev snmp libsnmp-dev libcurl4-openssl-dev php-gd php-xml php-bcmath php-mbstring vim libevent-dev libpcre3-dev libxml2-dev libmariadb-dev libopenipmi-dev pkg-config php-ldap -y
-.
-      Determine your directory.
+
+	Determine your directory.
     cd /opt
     
 
@@ -58,6 +58,7 @@ cd zabbix-6.4.5
 ***Please note:* 
 *This user cannot be used to log into Linux and does not have a user directory. It is solely to use Zabbix.***
 
+    cd zabbix-6.4.5/
     addgroup --system --quiet zabbix 
     adduser --quiet --system --disabled-login --ingroup zabbix --home /var/lib/zabbix --no-create-home zabbix
     mkdir -m u=rwx,g=rwx,o= -p /var/lib/zabbix
@@ -79,7 +80,8 @@ that it is essential to configure the settings correctly. An error may occur if 
 
     make install
     apt update 
-
+    which zabbix_get
+	
 > During this stage, we will be installing the database, Zabbix front
 > end, Nginx, and necessary scripts.
 
@@ -90,7 +92,7 @@ that it is essential to configure the settings correctly. An error may occur if 
 
 > check your nginx service
 
-    service ngnix status
+    systemctl status nginx 
     
 
 > To ensure proper functionality, it is important to execute the syntax
@@ -114,8 +116,8 @@ that it is essential to configure the settings correctly. An error may occur if 
 > from 8080**. Additionally, if we have the server name, we can include
 > it in the designated area.
 
-    nano /etc/nginx/sites-enabled/default
-    serivce nginx restrat 
+    nano /etc/nginx/sites-enabled/zabbix.conf
+    systemctl restart nginx
 
 ## Zabbix db Installation
 
@@ -130,7 +132,7 @@ that it is essential to configure the settings correctly. An error may occur if 
 
     mysql << EOF  
     create database zabbix character set utf8mb4 collate utf8mb4_bin;
-    create user zabbix@localhost identified by 'Nobody@Ops$2023@!';
+    create user zabbix@localhost identified by 'PackopsZBX2022';
     grant all privileges on zabbix.* to zabbix@localhost;
     flush privileges;
     SET GLOBAL log_bin_trust_function_creators = 1;
@@ -158,7 +160,7 @@ that it is essential to configure the settings correctly. An error may occur if 
     			    DBHost=localhost (*If you have clustered your database, you can display the database IP address here.*)
     			    DBName=zabbix
     			    DBUser=zabbix
-    				DBPassword=Nobody@Ops$2023@!
+    				DBPassword=PackopsZBX2022!
 				
 
 > make a service to use systemctl to start, stop etc ...
