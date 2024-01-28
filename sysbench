@@ -1,0 +1,35 @@
+create database sbtest;
+create user sbtest_user identified by 'password';
+grant all on sbtest.* to `sbtest_user`@`%`;
+show grants for sbtest_user;
+GRANT USAGE ON *.* TO `sbtest_user`@`%`;
+GRANT ALL PRIVILEGES ON `sbtest`.* TO `sbtest_user`@`%`
+
+
+sysbench \
+--db-driver=mysql \
+--mysql-user=sbtest_user \
+--mysql_password=password \
+--mysql-db=sbtest \
+--mysql-host=192.168.4.140 \
+--mysql-port=3306 \
+--tables=16 \
+--table-size=10000 \
+/usr/share/sysbench/oltp_read_write.lua prepare
+
+sysbench \
+--db-driver=mysql \
+--mysql-user=sbtest_user \
+--mysql_password=password \
+--mysql-db=sbtest \
+--mysql-host=192.168.4.140 \
+--mysql-port=3306 \
+--tables=16 \
+--table-size=10000 \
+/usr/share/sysbench/oltp_read_write.lua cleanup
+
+
+sysbench --test=cpu --cpu-max-prime=20000 run
+sysbench --test=fileio --file-total-size=150G cleanup
+
+sysbench --test=fileio --file-total-size=150G --file-test-mode=rndrw --init-rng=on --max-time=300 --max-requests=0 run

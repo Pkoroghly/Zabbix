@@ -1,0 +1,13 @@
+deb https://ir.archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+# deb-src https://ir.archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+
+deb https://ir.archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+# deb-src https://ir.archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse
+
+deb https://ir.archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+# deb-src https://ir.archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+
+deb https://ir.archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+# deb-src https://ir.archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+
+deb http://cz.archive.ubuntu.com/ubuntu focal-updates main
