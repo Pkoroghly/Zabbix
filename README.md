@@ -160,7 +160,7 @@ that it is essential to configure the settings correctly. An error may occur if 
     			    DBHost=localhost (*If you have clustered your database, you can display the database IP address here.*)
     			    DBName=zabbix
     			    DBUser=zabbix
-    				DBPassword=PackopsZBX2022!
+    				DBPassword=PackopsZBX2022
 				
 
 > make a service to use systemctl to start, stop etc ...
